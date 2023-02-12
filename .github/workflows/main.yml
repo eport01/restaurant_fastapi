@@ -36,7 +36,7 @@ jobs:
 
       #step 4 build virtual env if it doesn't already exist 
       - name: Activate Virtual Env 
-        run: python -m venv env && source env/bin/activate && pip3 install -r requirements.txt 
+        run: python -m venv env && env/bin/activate && pip3 install -r requirements.txt 
         if: steps.cache-env.outputs.cache-hit != 'true'
 
       - name: Run Tests 
