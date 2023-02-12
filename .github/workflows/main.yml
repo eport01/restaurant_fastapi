@@ -1,0 +1,59 @@
+name: Restaurants CI/CD 
+
+on: 
+  #Trigger the workflow on push 
+  push: 
+    branches: 
+      #push events on main branch 
+      - main 
+jobs: 
+  CI: 
+    # Define the runner used in the workflow
+    runs-on: ubuntu-latest 
+    steps: 
+      #checkout repo so our workflow can access it 
+      - uses: actions/checkout@v2 
+
+      #step 1 setup python 
+      - name: Set up python 
+        #sets up python environment for use in actions 
+        uses: actions/setup-python@v2 
+        with: 
+          python-version: 3.11 
+      
+      #step 2 Install Python virtual env 
+      - name: Install Python Virtual Env 
+        run: pip3 install virtualenv 
+
+      #step 3 Setup virtual environment 
+      - name: Virtual Env 
+        uses: actions/cache@v2 
+        id: cache-env 
+        with: 
+          path: env 
+          key: ${{ runner.os }}-env-${{ hashFiles('**/requirements*.txt')}}
+          restore-keys: /
+
+      #step 4 build virtual env if it doesn't already exist 
+      - name: Activate Virtual Env 
+        run: python -m venv env && source env/bin/activate && pip3 install -r requirements.txt 
+        if: steps.cache-env.outputs.cache-hit != 'true'
+
+      - name: Run Tests 
+        # have to activate virtual env in every step
+        run: . env/bin/activate && pytest 
+      - name: Create archive of dependencies 
+        run: / 
+          cd ./env/lib/python3.11/site-packages
+          zip -r9 ../../../../api.zip .
+      - name: Add API files to Zip file 
+        run: cd ./api && zip -g ../api.zip -r . 
+      - name: Upload zip file artifact 
+        #uploads artifacts from workflow allowing you to share data between jobs
+        #stores data once workflow is complete 
+        uses: actions/upload-artifact@v2 
+        with: 
+          name: api 
+          path: api.zip 
+
+      
