@@ -35,9 +35,9 @@ jobs:
           restore-keys: /
 
       #step 4 build virtual env if it doesn't already exist 
-      # - name: Activate Virtual Env 
-      #   run: python -m venv env && env/bin/activate && pip3 install -r requirements.txt 
-      #   if: steps.cache-env.outputs.cache-hit != 'true'
+      - name: Activate Virtual Env 
+        run: env/bin/activate && pip3 install -r requirements.txt 
+        if: steps.cache-env.outputs.cache-hit != 'true'
 
       - name: Run Tests 
         # have to activate virtual env in every step
