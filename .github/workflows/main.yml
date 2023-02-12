@@ -47,7 +47,7 @@ jobs:
           cd env/lib/python3.11/site-packages
           zip -r9 ../../../../api.zip .
       - name: Add API files to Zip file 
-        run: cd api && zip -g ../api.zip -r . 
+        run: cd ./api && zip -g ../api.zip -r . 
       - name: Upload zip file artifact 
         #uploads artifacts from workflow allowing you to share data between jobs
         #stores data once workflow is complete 
