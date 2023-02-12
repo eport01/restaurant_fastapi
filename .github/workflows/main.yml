@@ -12,12 +12,12 @@ jobs:
     runs-on: ubuntu-latest 
     steps: 
       #checkout repo so our workflow can access it 
-      - uses: actions/checkout@v2 
+      - uses: actions/checkout@v3 
 
       #step 1 setup python 
       - name: Set up python 
         #sets up python environment for use in actions 
-        uses: actions/setup-python@v2 
+        uses: actions/setup-python@v3 
         with: 
           python-version: 3.11 
       
@@ -27,7 +27,7 @@ jobs:
 
       #step 3 Setup virtual environment 
       - name: Virtual Env 
-        uses: actions/cache@v2 
+        uses: actions/cache@v3 
         id: cache-env 
         with: 
           path: env 
@@ -35,9 +35,9 @@ jobs:
           restore-keys: /
 
       #step 4 build virtual env if it doesn't already exist 
-      - name: Activate Virtual Env 
-        run: python -m venv env && env/bin/activate && pip3 install -r requirements.txt 
-        if: steps.cache-env.outputs.cache-hit != 'true'
+      # - name: Activate Virtual Env 
+      #   run: python -m venv env && env/bin/activate && pip3 install -r requirements.txt 
+      #   if: steps.cache-env.outputs.cache-hit != 'true'
 
       - name: Run Tests 
         # have to activate virtual env in every step
@@ -51,7 +51,7 @@ jobs:
       - name: Upload zip file artifact 
         #uploads artifacts from workflow allowing you to share data between jobs
         #stores data once workflow is complete 
-        uses: actions/upload-artifact@v2 
+        uses: actions/upload-artifact@v3 
         with: 
           name: api 
           path: api.zip 
