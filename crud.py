@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session 
 
-import models, app.schemas as schemas 
+import models, schemas    
 
 def get_restaurant(db: Session, restaurant_id: int): 
   return db.query(models.Restaurant).filter(models.Restaurant.id== restaurant_id).first()
