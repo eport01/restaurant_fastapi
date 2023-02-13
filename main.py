@@ -1,5 +1,6 @@
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session 
+from mangum import Mangum
 
 import crud, models, schemas
 from database import SessionLocal, engine 
@@ -46,3 +47,4 @@ def read_menu_items(skip: int = 0, limit: int =100, db: Session = Depends(get_db
   menu_items = crud.get_menu_items(db, skip=skip, limit=limit)
   return menu_items 
 
+handler = Mangum(app=app)
