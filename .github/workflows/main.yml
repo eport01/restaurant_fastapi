@@ -41,7 +41,7 @@ jobs:
 
       - name: Run Tests 
         # have to activate virtual env in every step
-        run: . env/bin/activate && pytest 
+        run: source env/bin/activate && pytest 
 
       - name: Create archive of dependencies 
         run: | 
