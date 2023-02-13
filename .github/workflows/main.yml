@@ -91,7 +91,8 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
 
       - name: Deploy new Lambda 
-        run: aws lambda update-function-code --function-name restaurant_fastapi --s3-bucket restaurantapi12 
+        run: aws lambda update-function-code --function-name restaurant_fastapi --zip-file fileb://api.zip
+        #--s3-bucket restaurantapi12 
         #--s3-key api.zip 
         env: 
           aws-access-key-id: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID}}
