@@ -90,17 +90,17 @@ jobs:
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION}}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
 
-      - name: Deploy new Lambda 
-        uses: appleboy/lambda-action@master
-        # run: 
-        #aws lambda update-function-code --function-name restaurant_fastapi --zip-file fileb://api.zip
-        #--s3-bucket restaurantapi12 
-        #--s3-key api.zip 
-        with: 
-          aws_access_key_id: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID}}
-          aws_region: ${{ secrets.AWS_DEFAULT_REGION}}
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
-          function_name: restaurant_fastapi
-          zip_file: api.zip 
+      # - name: Deploy new Lambda 
+      #   uses: appleboy/lambda-action@master
+      #   # run: 
+      #   #aws lambda update-function-code --function-name restaurant_fastapi --zip-file fileb://api.zip
+      #   #--s3-bucket restaurantapi12 
+      #   #--s3-key api.zip 
+      #   with: 
+      #     aws_access_key_id: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID}}
+      #     aws_region: ${{ secrets.AWS_DEFAULT_REGION}}
+      #     aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+      #     function_name: restaurant_fastapi
+      #     zip_file: api.zip 
 
           
