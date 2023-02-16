@@ -22,7 +22,7 @@ class RestaurantCreate(RestaurantBase):
 
 class Restaurant(RestaurantBase): 
   id: int 
-  is_active: bool 
+  # is_active: bool 
   menu_items: list[MenuItem] = []
 
   class Config: 
