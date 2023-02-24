@@ -68,14 +68,14 @@ jobs:
         with: 
           version: 2 
         env: 
-          AWS_SECRET_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID}}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID}}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION}}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
 
       - name: Configure Credentials 
         uses: aws-actions/configure-aws-credentials@v1
         with:           
-          aws-access-key-id: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID}}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID}}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION}}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
 
@@ -86,7 +86,7 @@ jobs:
       - name: Upload to S3 
         run: aws s3 cp api.zip s3://restaurantapi12/api.zip 
         env:
-          AWS_SECRET_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID}}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID}}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION}}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
 
@@ -97,7 +97,7 @@ jobs:
       #   #--s3-bucket restaurantapi12 
       #   #--s3-key api.zip 
       #   with: 
-      #     aws_access_key_id: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID}}
+      #     aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID}}
       #     aws_region: ${{ secrets.AWS_DEFAULT_REGION}}
       #     aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
       #     function_name: restaurant_fastapi
