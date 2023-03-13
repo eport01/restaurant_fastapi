@@ -1,4 +1,5 @@
 from fastapi import Depends, FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session 
 from mangum import Mangum
 
@@ -10,6 +11,16 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Dependency 
 def get_db(): 
   db = SessionLocal()
@@ -17,6 +28,10 @@ def get_db():
     yield db 
   finally: 
     db.close()
+
+@app.get("/")
+def root():
+    return {"message": "Welcome to your Restaurants API"}
 
 
 @app.post("/restaurants/", response_model=schemas.Restaurant, status_code=201)

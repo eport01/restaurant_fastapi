@@ -1,6 +1,5 @@
 <div align="center">
   <h1>Restaurants API</h1>
-  <div align="center"><img src="images/food_photo.jpeg" alt="Deschutes Brewery GIF" class="center" width="480" height="320"></div>
 </div>
 
 <br>
@@ -14,3 +13,4 @@
   6. To install requirements run: ```pip3 install -r requirements.txt ```
   7. To view endpoints locally run: ```uvicorn main:app --reload``` and navigate to url listed in terminal i.e. ```http://127.0.0.1:8000```
   8. You can view the interactive docs by adding ```/docs``` to the url in step 5 
+  9. You can access the Frontend respository [here](https://github.com/eport01/restaurants_fe) 
